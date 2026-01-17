@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hoćeš li biti moj Valentine? 💖</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffd6e8, #ffeef6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+    .card {
+background: white;
+padding: 30px;
+border-radius: 24px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+max-width: 420px;
+border: 6px solid #ffb6d5;
+    }
+    h1 {
+      color: #ff4d88;
+    }
+    img {
+      width: 200px;
+      margin: 20px 0;
+      border-radius: 16px;
+    }
+    .buttons {
+      margin-top: 20px;
+    }
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 14px 26px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    #yesBtn {
+      background: #ff4d88;
+      color: white;
+      margin-right: 10px;
+    }
+    #noBtn {
+      background: #ddd;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1 id="question">Hoćeš li biti moj Valentine? 💘</h1>
+    <img id="cuteImg" src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="cute" />
+    <div class="buttons">
+      <button id="yesBtn">DA 💖</button>
+      <button id="noBtn">NE 🙈</button>
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById('noBtn');
+    const yesBtn = document.getElementById('yesBtn');
+    const question = document.getElementById('question');
+
+    let noClicks = 0;
+
+    const noMessages = [
+      'Jesi li sigurna? 🥺',
+      'Stvarno sigurna? 😢',
+      'Ajde razmisli još malo 💔',
+      'Slomit ćeš mi srce 😭',
+      'Zadnji put pitam... 💖'
+    ];
+
+    const noImages = [
+      'https://media.giphy.com/media/3o6wrvdHFbwBrUFenu/giphy.gif',
+      'https://media.giphy.com/media/l3vR85PnGsBwu1PFK/giphy.gif',
+      'https://media.giphy.com/media/ROF8OQvDmxytW/giphy.gif',
+      'https://media.giphy.com/media/OPU6wzx8JrHna/giphy.gif',
+      'https://media.giphy.com/media/9Y5BbDSkSTiY8/giphy.gif'
+    ];
+
+    noBtn.addEventListener('click', () => {
+      noClicks++;
+
+      // povećaj DA gumb svaki put (bez preklapanja s NE)
+      const fontSize = 18 + noClicks * 6;
+      const paddingY = 14 + noClicks * 2;
+      const paddingX = 26 + noClicks * 4;
+      yesBtn.style.fontSize = fontSize + 'px';
+      yesBtn.style.padding = `${paddingY}px ${paddingX}px`;
+
+      // promijeni tekst pitanja i sliku
+      if (noClicks <= noMessages.length) {
+        question.textContent = noMessages[noClicks - 1];
+        document.getElementById('cuteImg').src = noImages[noClicks - 1];
+      } else {
+        question.textContent = 'DA je jedina opcija 😏💘';
+      }
+    });
+
+    yesBtn.addEventListener('click', () => {
+      question.textContent = 'YAAAY!! 💕 Jedva čekam Valentinovo s tobom 😍';
+      document.querySelector('.buttons').style.display = 'none';
+      document.getElementById('cuteImg').src = 'Screenshot_5.png';
+    });
+  </script>
+</body>
+</html>
